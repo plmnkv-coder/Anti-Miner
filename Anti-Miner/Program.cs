@@ -108,6 +108,8 @@ namespace Anti_Miner
             if (rez.Contains("Miner") || rez.Contains("miner") || rez.Contains("BtcMine") || rez.Contains("mine"))
                 miner = true;
 
+            rez = null;
+
             return miner;
         }
 
@@ -209,6 +211,11 @@ namespace Anti_Miner
 					File.Delete(path[c]);
 				}
 			} catch {}
+
+            pids_int = 0;
+            PIDS = null;
+            path = null;
+
         }
 
 
@@ -312,6 +319,7 @@ namespace Anti_Miner
                 FindUnSafePort();
                 FindUnSafeAgr();
                 FindVirus();
+                GC.Collect();
                 Thread.Sleep(20000);
             }
         }
